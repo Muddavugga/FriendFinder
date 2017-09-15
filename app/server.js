@@ -1,19 +1,19 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var app = express();
-var path = require('path');
+const express = require('express');
+const app = express();
 var PORT = process.env.PORT || 8080;
+const bodyParser = require('body-parser');
 
 
 // =============================================================
-app.use(bodyParser.urlencoded({ extended: false }))
- 
-// parse application/json
-app.use(bodyParser.json())
- 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(express.static('public'));
 
-require('./routes/htmlRoutes.js')
-require('./routes/apiRoutes.js')
-app.listen(PORT, function(){
-	console.log("Fuck yeah! App listening on PORT: " + PORT);
-});
+require('./route/htmlRoutes')(app);
+require('./route/apiRoutes')(app);
+app.listen(PORT, function () {
+    console.log('listing on localhost:'+PORT);
+    
+})
