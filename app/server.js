@@ -11,9 +11,9 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static('public'));
 
-require('./route/htmlRoutes')(app);
-require('./route/apiRoutes')(app);
+// require('./routing/htmlRoutes')(app);
+// require('./r/apiRoutes')(app);
 app.listen(PORT, function () {
-    console.log('listing on localhost:'+PORT);
+    console.log('Hell yeah, muddavugga! We are listening on localhost:'+PORT);
     
 })
